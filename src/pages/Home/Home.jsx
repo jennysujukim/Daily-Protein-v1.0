@@ -1,5 +1,5 @@
 // styles
-import styles from './_Home.module.scss'
+import styles from './Home.module.scss'
 
 // components
 import Dashboard from '../../components/Dashboard'

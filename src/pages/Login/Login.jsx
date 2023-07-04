@@ -2,19 +2,25 @@ import { useState } from 'react'
 import { useLogin } from '../../hooks/useLogin'
 
 // styles
-import styles from './_Login.module.scss'
+import styles from './Login.module.scss'
 import HandleLink from '../../components/HandleLink'
+
+// components
+import Error from '../../components/Error'
 
 export default function Login() {
 
+    // set State to retrieve user's input values
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
+
+    // handle retrieved input data with useLogin hook
+        // - error: handle error
+        // - login: save data to Firebase
     const { error, login } = useLogin()
 
     const handleSubmit = (e) => {
         e.preventDefault()
- 
-        console.log(email, password)
         login(email, password)
     }
 
@@ -28,19 +34,19 @@ export default function Login() {
                     <label>
                         <span>Email</span>
                         <input 
-                            type="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email} />
+                        type="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email} />
                     </label>
                     <label>
                         <span>Password</span>
                         <input 
-                            type="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            value={password} />
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password} />
                     </label>
+                    { error && <Error message={error} />}
                     <button>Log In</button>
-                    { error && <p>{error}</p> }
                 </form>
                 <div className={styles.signup}>
                     <p>OR</p>

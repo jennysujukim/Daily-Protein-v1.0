@@ -1,7 +1,7 @@
 import { useCreate } from '../../../hooks/useCreate'
 
 // styles
-import styles from './_FoodList.module.scss'
+import styles from './FoodList.module.scss'
 
 export default function FoodList({ lists }) {
 

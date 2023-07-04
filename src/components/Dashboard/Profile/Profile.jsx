@@ -1,7 +1,7 @@
 import { useProfile } from '../../../hooks/useProfile'
 
 // styles
-import styles from './_Profile.module.scss'
+import styles from './Profile.module.scss'
 
 // components
 import HandleLink from '../../HandleLink'
@@ -12,7 +12,7 @@ export default function Profile() {
 
     const { profile, error } = useProfile()
 
-    // Check error 
+    // Show below if there's error (when profile does not exist)
     if(error){ 
         return (
         <div className={styles.error}>
@@ -23,9 +23,11 @@ export default function Profile() {
         </div>
         )
     }
-    // Show loader during fetching
+
+    // Show loader during fetching profile data
     if (!profile){ return <Loader /> }
 
+    // Show below if profile data is successfully fetched
   return (
     <div className={styles.container}>
         <div className={styles.heading}>
