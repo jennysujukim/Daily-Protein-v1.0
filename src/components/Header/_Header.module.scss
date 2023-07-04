@@ -1,0 +1,26 @@
+@use '../../assets/sass/abstracts/' as *;
+
+.container {
+    height: 60px;
+    width: 100vw;
+    color: $orange;
+    background: $white;
+    font-weight: 700;
+    @include flex($justify: space-between, $align: center);
+    border-bottom: $greyBorder;
+}
+
+.logo { 
+    color: $orange;
+    padding-left: 1.5rem;
+}
+
+.date {
+    @include flex($align: center);
+    padding-right: 1.5rem;
+
+    svg {
+        @include svg($color: $orange);
+        padding-right: 0.3rem;
+    }
+}

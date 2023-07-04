@@ -1,0 +1,64 @@
+@use '../../assets/sass/abstracts/' as *;
+
+.container {
+    height: 100vh;
+    padding: 0 1.5rem;
+    @include flex($justify: center, $align: center, $direction: column);
+}
+
+.heading {
+    text-align: center;
+
+    .logo {
+        color: $orange;
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 1;
+    }
+
+    p {
+        padding-top: 0.8rem;
+        font-weight: 400;
+    }
+}
+
+.form_container {
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem 0;
+    @include flex($align: center, $justify: center, $direction: column);
+}
+
+.form { 
+    width: 100%; 
+
+    label {
+    width: 100%;
+
+        span { @include inputLabel(); }
+        input { @include inputField(); }
+    }
+
+    button {
+        @include button($width: 100%, $marginTop: 3rem, $border: $orangeBorder, $borderRadius: 20px);
+
+        &:hover {
+            background: $orange;
+            color: $white;
+            border: $whiteBorder;
+        }
+    }
+}
+
+.signin {
+    width: 100%;
+    padding-top: 1rem;
+    text-align: center;
+    
+    p { font-size: 0.8rem; }
+    button { @include button($width: 100%, $marginTop: 0.5rem);}
+}
+
+
+
+

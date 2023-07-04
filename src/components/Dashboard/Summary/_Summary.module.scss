@@ -1,0 +1,90 @@
+@use '../../../assets/sass/abstracts/' as *;
+
+.container {
+    border: $greyBorder;
+    border-radius: 7px;
+}
+
+.heading {
+    @include dashboardHeading();
+}
+
+.content_container {
+    padding: 1rem 1.5rem;
+}
+
+.title_container {
+    @include flex($align: center, $justify: space-between);
+    padding: 0.5rem 0;
+
+    p { 
+        color: $darkGrey;
+        font-size: 0.8rem;
+        font-weight: 400;
+        
+        @include desktop(){ font-size: 1rem; }
+    };
+}
+
+.today {
+    padding-bottom: 1rem;
+
+    .proteinCalc {
+
+        span { 
+            font-size: 0.8rem;
+            @include desktop(){ font-size: 1rem; }
+        }
+
+        .bar_container {
+            height: 8px;
+            width: 100%;
+            border: $greyBorder;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+
+            @include desktop(){ margin-top: 1rem; }
+        
+            .bar {
+                height: 8px;
+                background: $orange;
+                border-radius: 20px;
+            }
+        }
+    }
+}
+
+.record {
+    .graph_container {
+        @include grid($templateCols: repeat(7, 1fr), $colGap: 0.2rem);
+
+        .graph {
+            @include flex($justify: center, $align: center, $direction: column);
+
+            .bar_container {
+                height: 80px;
+                width: 20px;
+                border-radius: 5px;
+                overflow: hidden;
+                margin-bottom: 0.5rem;
+                position: relative;
+
+                .bar {
+                    position: absolute;
+                    bottom: 0;
+                    height: 50px;
+                    width: 20px;
+                    background: $orange;
+                    border-radius: 5px;
+                }
+            }
+            span { 
+                font-size: 0.7rem;
+                font-weight: 400;
+                color: $darkGrey;
+                @include desktop(){ font-size: 0.9rem; }
+            };
+        }
+    }
+}

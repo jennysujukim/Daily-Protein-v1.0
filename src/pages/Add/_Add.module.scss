@@ -1,0 +1,50 @@
+@use '../../assets/sass/abstracts/' as *;
+
+.container {
+    height: calc(100vh - 61px);
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+
+    @include laptop(){ padding: 3rem 0 0 0 };
+}
+
+.heading {
+    margin-bottom: 2rem;
+    text-align: center;
+
+    h2 {
+        padding-bottom: 1rem;
+    }
+}
+
+.form {
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+
+    input {
+        border: $orangeBorder;
+        background: none;
+        border-radius: 4px;
+        padding: 0.5rem;
+        
+        @include tablet(){ width: 350px };
+
+        @include laptop(){ width: 550px };
+    }
+
+    button {
+        margin-left: 1rem;
+    }
+}
+
+.results_container {
+    padding-top: 2rem;
+    width: 100%;
+    // @include laptop(){
+    //     padding-top: 3rem;
+    //     margin: 0 auto;
+    //     max-width: 1200px;
+    //     @include grid($templateCols: repeat(2, 1fr), $colGap: 1rem);
+    // }
+}

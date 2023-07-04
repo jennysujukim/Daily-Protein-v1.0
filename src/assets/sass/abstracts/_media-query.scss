@@ -1,0 +1,33 @@
+@use './variables' as v;
+@use 'sass:map';
+
+@mixin tablet {
+	@media (min-width: map-get(v.$breakpoints, "tablet")){
+		@content;
+	}
+}
+
+@mixin laptop {
+	@media (min-width: map-get(v.$breakpoints, "laptop")){
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: map-get(v.$breakpoints, "desktop")){
+		@content;
+	}
+}
+
+@mixin desktopLg {
+	@media (min-width: map-get(v.$breakpoints, "desktop-lg")){
+		@content;
+	}
+}
+
+// flexible breakpoint
+@mixin breakpoint($bp: 0) {
+	@media (min-width: $bp){
+		@content;
+	}
+}

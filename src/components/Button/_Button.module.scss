@@ -1,0 +1,15 @@
+@use '../../assets/sass/abstracts/' as *;
+
+.button {
+    border: $orangeBorder;
+    border-radius: 20px;
+    color: $orange;
+    background: none;
+    padding: 0.4rem 0.7rem;
+    text-transform: uppercase;
+
+    &:hover {
+        color: $white;
+        background: $orange;
+    }
+}

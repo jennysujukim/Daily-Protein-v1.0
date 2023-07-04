@@ -1,0 +1,3 @@
+@use '../../assets/sass/abstracts/' as *;
+
+a { @include flex($justify: center, $align: center); }

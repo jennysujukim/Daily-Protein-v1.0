@@ -1,0 +1,90 @@
+@use './variables' as *;
+@use './media-query' as m;
+
+// -------- Global -------- 
+
+@mixin flex($justify: none, $align: none, $direction: unset){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+@mixin grid($templateCols: unset, $templateRows: unset, $colGap: unset, $rowGap: unset){
+    display: grid;
+    grid-template-columns: $templateCols;
+    grid-template-rows: $templateRows;
+    column-gap: $colGap;
+    row-gap: $rowGap;
+}
+
+@mixin fixed($top: unset, $bottom: unset, $left: unset, $right: unset, $zIndex: unset){
+    position: fixed;
+    top: $top;
+    bottom: $bottom;
+    left: $left;
+    right: $right;
+    z-index: $zIndex;
+}
+
+@mixin absolute($left: unset, $right: unset, $top: unset, $bottom: unset){
+    position: absolute;
+    left: $left;
+    right: $right;
+    top: $top;
+    $bottom: $bottom;
+}
+
+
+// -------- Components --------
+
+@mixin dashboardHeading(){
+    color: $orange;
+    background: $lightorange;
+    border-bottom: $greyBorder;
+    @include flex($justify: space-between, $align: center);
+    border-radius: 7px 7px 0 0;
+    padding: 0.5rem 1rem;
+}
+
+@mixin svg($color: unset, $size: 18px ){
+    fill: $color;
+    height: $size;
+    width: $size;
+}
+
+@mixin inputLabel() {
+    display: block;
+    color: $darkGrey;
+    font-weight: 400;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 1rem 0 0.3rem 0;
+}
+
+@mixin inputField($width: calc(100% - 1rem)) {
+    margin: auto 0;
+    padding: 0.5rem;
+    width: $width;
+    border: $greyBorder;
+    border-radius: 4px;
+    font-family: $lato;
+    font-size: 1rem;
+    color: $darkGrey;
+    @include m.desktop(){ font-size: 1rem; }
+}
+
+@mixin button($width: unset, $marginTop: unset, $border: unset, $borderRadius: unset, $background: unset, $color: $orange) {
+    width: $width;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-top: $marginTop;
+    border: $border;
+    border-radius: $borderRadius;
+    color: $color;
+    font-family: $lato;
+    font-weight: 400;
+    text-transform: uppercase;
+    background: $background;
+    @include m.desktop() { font-size: 1rem; };
+}

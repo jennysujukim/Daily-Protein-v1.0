@@ -1,0 +1,45 @@
+@use '../../assets/sass/abstracts/' as *;
+
+.container {
+    padding: calc(61px + 2rem) 1.5rem calc(61px + 2rem) 1.5rem;
+    margin: 0 auto;
+}
+
+.heading {
+    text-align: center;
+
+    p { padding-top: 0.8rem; }
+
+}
+
+.form {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    padding-top: 2rem;
+    @include flex($align: center, $justify: center, $direction: column);
+
+    label {
+        width: 100%;
+
+        span { @include inputLabel(); }
+        input { @include inputField(); }
+        select { 
+            @include inputField($width: 100%);
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+    }
+
+    button {
+        @include button($width: 50%, $marginTop: 3rem, $border: $orangeBorder, $borderRadius: 20px);
+     }
+}
+
+.skip { 
+    @include button($width: 100%, $marginTop: 0.5rem, $color: $grey);
+    padding-top: 1rem;
+
+    &:hover { color: $darkGrey; }
+}

@@ -1,0 +1,65 @@
+@use '../../../assets/sass/abstracts/' as *;
+
+.error {
+    border: 1px solid #995555;
+    border-radius: 7px;
+    background: #ffebeb;
+    color: #995555;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 0.5rem;
+    @include flex($align: center, $justify: space-between);
+
+    a {
+        color: #995555;
+        font-weight: 600;
+    }
+}
+
+.container {
+    border: $greyBorder;
+    border-radius: 7px;
+    margin-bottom: 1.5rem;
+}
+
+.heading {
+    @include dashboardHeading();
+
+    svg { @include svg($color: $orange, $size: 21px); }
+}
+
+.details {
+    padding: 1rem 1.5rem;
+
+    .info_container {
+        @include grid($templateRows: repeat(6, 1fr), $rowGap: 0.8rem);
+
+        @include tablet(){
+            @include grid($templateCols: repeat(2,1fr), $templateRows: repeat(3, 1fr), $colGap: 1.5rem, $rowGap: 1rem);
+        }
+
+        div {
+            grid-row: auto / span 1;
+            @include flex($justify: space-between, $align: center);
+
+            @include tablet(){ grid-column: auto / span 1; }
+
+            span { 
+                font-size: 0.8rem;
+                font-weight: 400;
+                color: $darkGrey;
+                text-transform: uppercase;
+
+                @include desktop(){ font-size: 1rem; }
+            }
+            
+            p { 
+                font-size: 0.8rem; 
+                text-align: right;
+                @include desktop(){ font-size: 1rem; }
+            }
+        }
+    }
+
+}
