@@ -1,10 +1,6 @@
 @use '../../sass/abstracts/' as *;
 
 .container {
-    padding-top: 61px;
-    overflow: hidden; 
-    margin: 0 auto;
-
     @include laptop() {
         max-width: 1200px;
         @include grid($templateCols: 45% 55%);

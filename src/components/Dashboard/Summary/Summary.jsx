@@ -4,16 +4,20 @@ import { useTracker } from '../../../hooks/useTracker'
 // styles
 import styles from './Summary.module.scss'
 
+// components
+import Error from '../../Error'
+
 export default function Summary() {
 
-    // const days = [ "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" ]
-
-    const { intakes } = useTracker()
+    // use intakes data from Firebase 
+        // - in order to sum up total intakes
+    const { error, intakes } = useTracker()
 
     const [ totalProtein, setTotalProtein ] = useState([])
     const [ remaining, setRemaining ] = useState('')
     const [ bar, setBar ] = useState('')
  
+    // calculate total protein intakes
     useEffect(() => {
 
         const getProteins = () => {
@@ -36,9 +40,7 @@ export default function Summary() {
             setBar(barPercent)
         }
 
-        if(intakes){
-            getProteins()
-        }
+        if(intakes){ getProteins() }
 
     }, [intakes])
 
@@ -47,37 +49,22 @@ export default function Summary() {
         <div className={styles.heading}>
             <h4>Summary</h4>
         </div>
-        <div className={styles.content_container}>
-            <div className={styles.today}>
-                <div className={styles.title_container}>
-                    <h6>Today's Protein Intake</h6>
-                    <p>{totalProtein} / 40g</p>
-                </div>
-                <div className={styles.proteinCalc}>
-                    <span>{remaining} g remaining</span>
-                    <div className={styles.bar_container}>
-                        <div 
-                        className={styles.bar}
-                        style={ {width: `${bar}%`} }></div>
-                    </div>
+        {error ? <Error message={error}/> :
+        <div className={styles.today}>
+            <div className={styles.titleContainer}>
+                <h6>Today's Protein Intake</h6>
+                <p>{totalProtein} / 40g</p>
+            </div>
+            <div className={styles.proteinCalc}>
+                <span>{remaining} g remaining</span>
+                <div className={styles.barContainer}>
+                    <div 
+                    className={styles.bar}
+                    style={ {width: `${bar}%`} }></div>
                 </div>
             </div>
-            {/* <div className={styles.record}>
-                <div className={styles.title_container}>
-                    <h6>See Your Record</h6>
-                </div>
-                <div className={styles.graph_container}>
-                    {days.map((day, index)=> (
-                    <div key={index} className={styles.graph}>
-                        <div className={styles.bar_container}>
-                            <div className={styles.bar}></div>
-                        </div>
-                        <span>{day}</span>
-                    </div>
-                    ))}
-                </div>
-            </div> */}
         </div>
+        }
     </div>
 
   )

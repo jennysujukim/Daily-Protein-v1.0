@@ -7,7 +7,8 @@ import {
     onSnapshot, 
     query, 
     updateDoc, 
-    where } from 'firebase/firestore';
+    where,
+    addDoc } from 'firebase/firestore';
 import { useAuthContext } from "./useAuthContext";
 import { db } from '../firebase/config';
 
@@ -20,7 +21,7 @@ export const useProfile = () => {
     const [ profile, setProfile ] = useState(null)
     const [ error, setError ] = useState(null)
 
-    // use AuthContext to check user
+    // use user's uid from AuthContext
     const { user } = useAuthContext()
 
 useEffect(() => {
@@ -28,11 +29,10 @@ useEffect(() => {
     // declare variable for 'profiles' collection database in Firestore
     let ref = collection(db, 'profiles')
 
-    // declare query for check 'uid' field in database
+    // declare query for checking 'uid' field in database
     const q = query(ref, where("uid", "==", user.uid))
 
     // Read real-time data
-        // - snapshot: real-time data when the function is executed
     const unsub = onSnapshot(q, (snapshot) => {
         // retrieve data if snapshot has something
         if(!snapshot.empty){
@@ -57,11 +57,11 @@ return { profile, error }
 
 
 
-// ------ UPDATE PROFILE DATABASE ------- //
+// ------ CREATE PROFILE DATABASE ------- //
 
-export const useUpdateProfile = () => {
+export const useCreateProfile = () => { 
 
-    const [ error, setError ] = useState(null)
+    const [ createError, setCreateError ] = useState(null)
     const [ age, setAge ] = useState('')
     const [ gender, setGender ] = useState('')
     const [ height, setHeight ] = useState('')
@@ -69,7 +69,56 @@ export const useUpdateProfile = () => {
     const [ activity, setActivity ] = useState('')
     const [ goal, setGoal ] = useState('')
 
-    // use AuthContext to check user
+    const { user } = useAuthContext()
+
+    useEffect(() => {
+
+        // create add function
+        const addDocument = async () => {
+            try {
+                // declare variable for 'profiles' database in Firestore
+                const ref = collection(db, 'profiles')
+
+                // add data
+                await addDoc(ref, {
+                    age: age,
+                    gender: gender,
+                    height: height, 
+                    weight: weight,
+                    activity: activity,
+                    goal: goal,
+                    uid: user.uid
+                })
+
+            } catch (error) {
+                setCreateError('Error adding document:', error)
+            }
+        }
+
+        if(age !== "" && gender !== "" && height !== "" && weight !== "" && activity !== "" && goal !== ""){
+            addDocument()
+        }
+
+    }, [ age, gender, height, weight, activity, goal, user])
+
+    return { setAge, setGender, setHeight, setWeight, setActivity, setGoal, createError }
+}
+
+
+
+
+// ------ UPDATE PROFILE DATABASE ------- //
+
+export const useUpdateProfile = () => {
+
+    const [ updateError, setUpdateError ] = useState(null)
+    const [ age, setAge ] = useState('')
+    const [ gender, setGender ] = useState('')
+    const [ height, setHeight ] = useState('')
+    const [ weight, setWeight ] = useState('')
+    const [ activity, setActivity ] = useState('')
+    const [ goal, setGoal ] = useState('')
+
     const { user } = useAuthContext()
 
     useEffect(() => {
@@ -78,7 +127,6 @@ export const useUpdateProfile = () => {
         const updateDocument = async () => {
 
             try {
-
                 // declare variable for 'profiles' collection database in Firestore
                 const ref = collection(db, 'profiles')
 
@@ -101,13 +149,13 @@ export const useUpdateProfile = () => {
                         activity: activity,
                         goal: goal
                     })
-                    setError(null)
+                    setUpdateError(null)
                 } else {
                     console.log('Profile does not exist.')
-                    setError('Profile does not exist.')
+                    setUpdateError('Profile does not exist.')
                 }
             } catch (error) {
-                setError('Error updating document:', error)
+                setUpdateError('Error updating document:', error)
             }
 
         }
@@ -115,12 +163,10 @@ export const useUpdateProfile = () => {
         // ensuring all input fields are filled
         if(age !== '' && gender !== '' && height !== '' && weight !== '' && activity !== '' && goal !== ''){
             updateDocument()
-        } else {
-            setError('All input fields should be filled.')
         }
 
     }, [ age, gender, height, weight, activity, goal, user ])
 
 
-    return { setAge, setGender, setHeight, setWeight, setActivity, setGoal, error }
+    return { setAge, setGender, setHeight, setWeight, setActivity, setGoal, updateError }
 }

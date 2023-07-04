@@ -1,7 +1,17 @@
 @use '../../sass/abstracts/' as *;
 
 .error {
+    border: 1px solid $error-red;
+    border-radius: 7px;
+    background: $error-bg;
     color: $error-red;
-    font-weight: bold;
-    padding: 0.5rem 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 0.5rem;
+    @include flex(space-between, center);
+
+    a {
+        color: $error-red;
+        font-weight: 600;
+    }
 }

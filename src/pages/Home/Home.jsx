@@ -7,7 +7,7 @@ import Tracker from '../../components/Tracker'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className={`wrapper ${styles.container}`}>
         <Dashboard />
         <Tracker />
     </div>

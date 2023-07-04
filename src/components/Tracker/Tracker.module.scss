@@ -1,15 +1,13 @@
 @use '../../sass/abstracts/' as *;
 
 .container {
-    padding: 2rem 1.5rem;
-    @include laptop(){ padding: 3rem 1.5rem 3rem 0.8rem; }
+    padding: 3rem 0;
+    @include laptop { padding: 0 0 0 1rem; };
 }
 
-.heading {
-    @include flex($align: center, $justify: space-between);
-}
+.heading { @include flex(space-between, center); }
 
-.list_container {
+.listContainer {
     padding: 2rem 0;
 
     .list {

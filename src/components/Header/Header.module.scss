@@ -6,7 +6,7 @@
     color: $orange;
     background: $white;
     font-weight: 700;
-    @include flex($justify: space-between, $align: center);
+    @include flex(space-between, center);
     border-bottom: $greyBorder;
 }
 
@@ -15,12 +15,31 @@
     padding-left: 1.5rem;
 }
 
-.date {
-    @include flex($align: center);
+.optionContainer {
+    @include flex(flex-start, center);
     padding-right: 1.5rem;
+}
+
+.date {
+    display: none;
+
+    @include tablet {
+        @include flex(flex-start, center);
+        padding-right: 1rem;
+    }
 
     svg {
         @include svg($color: $orange);
         padding-right: 0.3rem;
     }
+}
+
+.logoutBtn {
+    color: $orange;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all 400ms ease-in-out;
+
+    &:hover { text-decoration: underline; }
 }

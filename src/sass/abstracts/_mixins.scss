@@ -3,7 +3,7 @@
 
 // -------- Global -------- 
 
-@mixin flex($justify: none, $align: none, $direction: unset){
+@mixin flex($justify, $align, $direction: false){
     display: flex;
     justify-content: $justify;
     align-items: $align;
@@ -18,7 +18,7 @@
     row-gap: $rowGap;
 }
 
-@mixin fixed($top: unset, $bottom: unset, $left: unset, $right: unset, $zIndex: unset){
+@mixin fixed($top, $bottom, $left, $right, $zIndex: false){
     position: fixed;
     top: $top;
     bottom: $bottom;
