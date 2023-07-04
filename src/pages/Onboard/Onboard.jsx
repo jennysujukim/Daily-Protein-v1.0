@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useOnboard } from '../../hooks/useOnboard'
 
 // styles
-import styles from './_Onboard.module.scss'
+import styles from './Onboard.module.scss'
 
 // components
 import Button from '../../components/Button'

@@ -2,7 +2,7 @@ import { useTracker } from '../../hooks/useTracker'
 import { useDelete } from '../../hooks/useDelete'
 
 // styles
-import styles from './_Tracker.module.scss'
+import styles from './Tracker.module.scss'
 
 // components
 import HandleLink from '../HandleLink'

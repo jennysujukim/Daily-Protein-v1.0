@@ -1,0 +1,7 @@
+@use '../../sass/abstracts/' as *;
+
+.error {
+    color: $error-red;
+    font-weight: bold;
+    padding: 0.5rem 0;
+}

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 
 // styles
-import styles from './_Add.module.scss'
+import styles from './Add.module.scss'
 
 // components
 import Button from '../../components/Button'

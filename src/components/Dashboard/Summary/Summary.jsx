@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTracker } from '../../../hooks/useTracker'
 
 // styles
-import styles from './_Summary.module.scss'
+import styles from './Summary.module.scss'
 
 export default function Summary() {
 

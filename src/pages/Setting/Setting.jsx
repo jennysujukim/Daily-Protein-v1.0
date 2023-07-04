@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useProfile, useUpdateProfile } from '../../hooks/useProfile'
 
 // styles
-import styles from './_Setting.module.scss'
+import styles from './Setting.module.scss'
 
 // components
 import Button from '../../components/Button'

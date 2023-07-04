@@ -1,7 +1,7 @@
 import { useAuthContext } from '../../hooks/useAuthContext'
 
 // styles
-import styles from './_Dashboard.module.scss'
+import styles from './Dashboard.module.scss'
 
 // components
 import Profile from './Profile'

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 
 // styles
-import styles from './_HandleLink.module.scss'
+import styles from './HandleLink.module.scss'
 
 export default function HandleLink({ dest, children }) {
 
