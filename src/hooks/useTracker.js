@@ -9,15 +9,21 @@ export const useTracker = () => {
     const [ intakes, setIntakes ] = useState(null)
     const [ error, setError ] = useState(null)
 
+    // use user's uid from AuthContext
     const { user } = useAuthContext()
 
     useEffect(() => {
+
+        // declare variable for 'intakes' data collection
         let ref = collection(db, 'intakes')
 
+        // declare query for checking 'uid' field in database
+        // organize in order of createdAt
         const q = query(ref, where( "uid", "==", user.uid ), orderBy("createdAt") )
 
         const currentDate = format(new Date(), 'PP')
 
+        // Read real-time data
         const unsub = onSnapshot(q, (snapshot) => {
             let results = []
             snapshot.docs.forEach((doc) => {
@@ -25,6 +31,7 @@ export const useTracker = () => {
                 const data = doc.data()
                 const dataDate = format(data.createdAt.toDate(), 'PP')
 
+                // exclusively read data matching today's date
                 if(dataDate === currentDate){
                     results.push({ ...data, id: doc.id })
                 }
@@ -42,4 +49,4 @@ export const useTracker = () => {
 
     return { intakes, error }
 
-}
+} 

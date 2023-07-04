@@ -12,8 +12,8 @@ export default function Dashboard() {
   const { user } = useAuthContext()
 
   return (
-    <div className={styles.container}>
-        <h2>Welcome, {user.displayName}!</h2>
+    <div>
+        <h2 className={styles.title}>Welcome, {user.displayName}!</h2>
         <Profile />
         <Summary />
     </div>

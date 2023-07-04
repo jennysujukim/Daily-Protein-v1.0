@@ -6,19 +6,19 @@ import { doc, deleteDoc } from 'firebase/firestore'
 export const useDelete = () => {
 
     const [ docId, setDocId ] = useState(null)
+    const [ deleteError, setDeleteError ] = useState(null)
 
     useEffect(() => {
+        
+        // create delete async function
         const deleteDocument = async () => {
-            
+            setDeleteError(null)
+
             try {
                 const ref = doc(db, 'intakes', docId)
-
                 await deleteDoc(ref)
-
-                console.log('Document deleted sccueessfully')
-
             }catch (error) {
-                console.error('Error deleting document:', error)
+                setDeleteError('Error deleting document:', error)
             }
         }
 
@@ -28,5 +28,5 @@ export const useDelete = () => {
 
     }, [docId])
 
-    return { setDocId }
+    return { setDocId, deleteError }
 }

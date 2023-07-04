@@ -1,6 +1,7 @@
 @use '../../sass/abstracts/' as *;
 
 .button {
+    cursor: pointer;
     border: $orangeBorder;
     border-radius: 20px;
     color: $orange;

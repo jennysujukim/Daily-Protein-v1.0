@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useProfile, useUpdateProfile } from '../../hooks/useProfile'
+import { 
+    useProfile, 
+    useUpdateProfile } from '../../hooks/useProfile'
 
 // styles
 import styles from './Setting.module.scss'
@@ -9,10 +11,10 @@ import styles from './Setting.module.scss'
 import Button from '../../components/Button'
 import Loader from '../../components/Loader'
 import HandleLink from '../../components/HandleLink'
+import Error from '../../components/Error'
 
 export default function Setting() {
 
-    // Set mutable values
     const [age, setAgeState] = useState('');
     const [gender, setGenderState] = useState('');
     const [height, setHeightState] = useState('');
@@ -20,73 +22,84 @@ export default function Setting() {
     const [activity, setActivityState] = useState('');
     const [goal, setGoalState] = useState('');
 
-    // Fetch profile's saved data
+    // useProfile to fetch saved profile data from Firebase
     const { profile, error } = useProfile()
 
-    // Update profile's data
-    const { setAge, setGender, setHeight, setWeight, setActivity, setGoal } = useUpdateProfile()
+
+    // set the initial input values as saved data from Firebase
+    useEffect(() => {
+        if (profile) {
+            setAgeState(profile.age)
+            setGenderState(profile.gender)
+            setHeightState(profile.height)
+            setWeightState(profile.weight)
+            setActivityState(profile.activity)
+            setGoalState(profile.goal)
+        }
+    },[profile])
+
+    // update profile data to Firebase
+    const { setAge, setGender, setHeight, setWeight, setActivity, setGoal, updateError } = useUpdateProfile()
 
     const navigate = useNavigate()
 
-    // Check error 
-    if(error){ return <div>{error}</div> }
-    // Show loader during fetching
-    if (!profile){ return <Loader /> }
-
+    // update profile data when user submits form
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        setAge(age || profile.age)
-        setGender(gender || profile.gender)
-        setHeight(height || profile.height)
-        setWeight(weight || profile.weight)
-        setActivity(activity || profile.activity)
-        setGoal(goal || profile.goal)
+        setAge(age)
+        setGender(gender)
+        setHeight(height)
+        setWeight(weight)
+        setActivity(activity)
+        setGoal(goal) 
 
         navigate('/')
     }
 
   return (
-    <div className={styles.container}>
+    <div className="wrapper">
         <h3 className={styles.heading}>Profile Setting</h3>
+        {error && <Error message={error}/>}
+        {!profile ? <Loader /> : 
         <form 
-            className={styles.form}
-            onSubmit={handleSubmit}>
+        className={styles.form}
+        onSubmit={handleSubmit}>
             <label>
                 <span>Age</span>
                 <input 
-                    type="number"
-                    onChange={(e) => setAgeState(e.target.value)}
-                    value={age || profile.age} />
+                type="number"
+                onChange={(e) => setAgeState(e.target.value)}
+                value={age} />
             </label>
             <label>
                 <span>Gender</span>
                 <select 
-                    value={gender || profile.gender}
-                    onChange={(e) => setGenderState(e.target.value)}>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                value={gender}
+                onChange={(e) => setGenderState(e.target.value)}>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
                 </select>
             </label>
             <label>
-                <span>Height</span>
+                <span>Height / cm</span>
                 <input
-                    type="number"
-                    onChange={(e) => setHeightState(e.target.value)}
-                    value={height || profile.height} />
+                type="number"
+                onChange={(e) => setHeightState(e.target.value)}
+                value={height} />
             </label>
             <label>
-                <span>Weight</span>
+                <span>Weight / kg</span>
                 <input 
-                    type="number"
-                    onChange={(e) => setWeightState(e.target.value)}
-                    value={weight || profile.weight} />
+                type="number"
+                onChange={(e) => setWeightState(e.target.value)}
+                value={weight} />
             </label>
             <label>
                 <span>Activity</span>
                 <select
-                    value={activity || profile.activity}
-                    onChange={(e) => setActivityState(e.target.value)}>
+                value={activity}
+                onChange={(e) => setActivityState(e.target.value)}>
                     <option value="Highly Active">Highly Active</option>
                     <option value="Active">Active</option>
                     <option value="Average">Average</option>
@@ -97,15 +110,17 @@ export default function Setting() {
             <label>
                 <span>Goal</span>
                 <select 
-                    value={goal || profile.goal}
-                    onChange={(e) => setGoalState(e.target.value)}>
+                value={goal}
+                onChange={(e) => setGoalState(e.target.value)}>
                     <option value="Gain weight">Gain weight</option>
                     <option value="Maintain weight">Maintain weight</option>
                     <option value="Loose weight">Loose weight</option>
                 </select>
             </label>
+            {updateError && <Error message={updateError}/>}
             <Button text="Update"></Button>
         </form>
+        }
         <HandleLink dest={'/'}>
             <button className={styles.back}>Go Back</button>
         </HandleLink>

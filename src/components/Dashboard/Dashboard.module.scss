@@ -1,15 +1,10 @@
 @use '../../sass/abstracts/' as *;
 
-.container {
-    padding: 2rem 1.5rem;
-    @include laptop(){ padding: 3rem 0.8rem 3rem 1.5rem; }
+.title {
+    padding-bottom: 2rem;
+    text-align: center;
 
-    h2 {
-        padding-bottom: 2rem;
-        text-align: center;
-
-        @include laptop() {
-            text-align: left;
-        }
+    @include laptop() {
+        text-align: left;
     }
 }

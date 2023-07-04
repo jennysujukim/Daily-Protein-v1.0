@@ -1,18 +1,18 @@
 @use '../../../sass/abstracts/' as *;
 
 .error {
-    border: 1px solid #995555;
+    border: 1px solid $error-red;
     border-radius: 7px;
-    background: #ffebeb;
-    color: #995555;
-    margin-bottom: 1rem;
+    background: $error-bg;
+    color: $error-red;
     font-size: 0.8rem;
     font-weight: 400;
     padding: 0.5rem;
-    @include flex($align: center, $justify: space-between);
+    margin-bottom: 1rem;
+    @include flex(space-between, center);
 
     a {
-        color: #995555;
+        color: $error-red;
         font-weight: 600;
     }
 }
@@ -41,7 +41,7 @@
 
         div {
             grid-row: auto / span 1;
-            @include flex($justify: space-between, $align: center);
+            @include flex(space-between, center);
 
             @include tablet(){ grid-column: auto / span 1; }
 
