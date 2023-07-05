@@ -5,11 +5,8 @@ import styles from './FoodList.module.scss'
 
 export default function FoodList({ lists }) {
 
+    // Add on 'intakes' database when user clicks plus icon
     const { setName, setProtein } = useCreate()
-
-    if (lists.length === 0) {
-        return <div>No results to load...</div>
-    }
 
     const handleClick = (name, protein) => {
         setName(name)
@@ -18,16 +15,21 @@ export default function FoodList({ lists }) {
 
     return (
         <div className={styles.container}>
+            { lists && lists.length === 0 &&
+                <div className={styles.error}>
+                    <p>No result to load...</p>
+                </div>
+            }
             {lists.map((list, index) => (
                 <div 
-                    key={index}
-                    className={styles.results}>
+                key={index}
+                className={styles.results}>
                     <div className={styles.title}>
                         <span>{list.food.label}</span>
                         <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            viewBox="0 -960 960 960"
-                            onClick={() => handleClick(list.food.label, list.food.nutrients.PROCNT.toFixed(0))}>
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 -960 960 960"
+                        onClick={() => handleClick(list.food.label, list.food.nutrients.PROCNT.toFixed(0))}>
                             <path d="M450-200v-250H200v-60h250v-250h60v250h250v60H510v250h-60Z"/>
                         </svg>
                     </div>
@@ -49,7 +51,6 @@ export default function FoodList({ lists }) {
                             <p>{list.food.nutrients.FAT.toFixed(0)} g</p>
                         </div>
                     </div>
-                    <p className={styles.calc}>This takes <span>4%</span> of your daily intake.</p>
                 </div>
             ))}
         </div>

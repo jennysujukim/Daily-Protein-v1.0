@@ -2,18 +2,24 @@
 
 .container {
     @include laptop(){
-        padding-top: 3rem;
         margin: 0 auto;
         max-width: 1200px;
         @include grid($templateCols: repeat(2, 1fr), $colGap: 1rem);
     }
 }
 
+.error {
+    grid-column: auto / span 2;
+    text-align: center;
+    color: $error-red;
+    font-style: italic;
+}
+
 .results {
     background: $white;
     border: $greyBorder;
     border-radius: 7px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     @include laptop(){
         grid-column: auto / span 1;
     };
@@ -26,6 +32,7 @@
         }
 
         svg {
+            cursor: pointer;
             margin-left: 0.5rem;
             fill: $orange;
             height: 20px;

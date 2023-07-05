@@ -20,6 +20,7 @@ import NotFound from './pages/NotFound';
 
 // components
 import Header from './components/Header';
+import { ProteinContextProvider } from './context/ProteinContext';
 
 
 function App() {
@@ -32,26 +33,28 @@ function App() {
   return (
     <div className="App">
       { authIsReady && (
-      <BrowserRouter>
-        { user &&
-          <header className="Header">
-            <Header />
-          </header>
-        }
-        <main className="Content">
-          <Routes>
-            <Route path="/" element={user ? <Home /> : <Navigate to ="/account/login" replace={true}/>} />
-            <Route path="/onboard" element={user && <Onboard />} />
-            <Route path="/add" element={user && <Add />} />
-            <Route path="/account">
-              <Route path="setting" element={user && <Setting />} />
-              <Route path="signup" element={!user ? <Signup /> : <Navigate to ="/onboard" replace={true}/>} />
-              <Route path="login" element={!user ? <Login /> : <Navigate to ="/" replace={true}/>} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-      </BrowserRouter>
+      <ProteinContextProvider>
+        <BrowserRouter>
+          { user &&
+            <header className="Header">
+              <Header />
+            </header>
+          }
+          <main className="Content">
+            <Routes>
+              <Route path="/" element={user ? <Home /> : <Navigate to ="/account/login" replace={true}/>} />
+              <Route path="/onboard" element={user && <Onboard />} />
+              <Route path="/add" element={user && <Add />} />
+              <Route path="/account">
+                <Route path="setting" element={user && <Setting />} />
+                <Route path="signup" element={!user ? <Signup /> : <Navigate to ="/onboard" replace={true}/>} />
+                <Route path="login" element={!user ? <Login /> : <Navigate to ="/" replace={true}/>} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+        </BrowserRouter>
+      </ProteinContextProvider>
       )}
     </div>
   );

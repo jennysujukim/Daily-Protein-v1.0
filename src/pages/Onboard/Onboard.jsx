@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCreateProfile } from '../../hooks/useProfile'
+import { CalculateIntake } from '../../hooks/useCalculate'
+import { useProteinContext } from '../../hooks/useProteinContext'
 
 // styles
 import styles from './Onboard.module.scss'
@@ -13,17 +15,19 @@ import Error from '../../components/Error'
 
 export default function Onboard() {
 
-    const [age, setAgeState] = useState('');
-    const [gender, setGenderState] = useState('');
-    const [height, setHeightState] = useState('');
-    const [weight, setWeightState] = useState('');
-    const [activity, setActivityState] = useState('');
-    const [goal, setGoalState] = useState('');
+    const [age, setAgeState] = useState('')
+    const [gender, setGenderState] = useState('')
+    const [height, setHeightState] = useState('')
+    const [weight, setWeightState] = useState('')
+    const [activity, setActivityState] = useState('')
+    const [goal, setGoalState] = useState('')
 
     // Add data to Firestore when user submits the form
     const { setAge, setGender, setHeight, setWeight, setActivity, setGoal, createError } = useCreateProfile()
 
     const navigate = useNavigate()
+
+    const { setProteinIntake } = useProteinContext()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -33,6 +37,17 @@ export default function Onboard() {
         setWeight(weight)
         setActivity(activity)
         setGoal(goal)
+
+        const proteinAmount = CalculateIntake(
+            parseInt(age),
+            gender, 
+            parseInt(height),
+            parseInt(weight),
+            activity,
+            goal)
+
+        console.log(proteinAmount)
+        setProteinIntake(proteinAmount)
         
         navigate('/')
 
