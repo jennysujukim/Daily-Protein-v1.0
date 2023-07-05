@@ -14,9 +14,6 @@ export const useCreate = () => {
 
     const { user } = useAuthContext()
 
-    // add timestamp in order to display the data in line with the current date
-    const createdAt = serverTimestamp()
-
     useEffect(() => {
 
         // create add function
@@ -27,7 +24,7 @@ export const useCreate = () => {
                 await addDoc(ref, {
                     name: name,
                     protein: protein,
-                    createdAt: createdAt,
+                    createdAt: serverTimestamp(),
                     uid: user.uid
                 })
 
@@ -41,8 +38,8 @@ export const useCreate = () => {
             addDocument()
         }
 
-    }, [user, name, protein, createdAt])
+    }, [user, name, protein])
 
-    return { setName, setProtein, createdAt, error }
+    return { setName, setProtein, error }
 
 }

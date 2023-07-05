@@ -23,22 +23,26 @@ export default function Onboard() {
     const [goal, setGoalState] = useState('')
 
     // Add data to Firestore when user submits the form
-    const { setAge, setGender, setHeight, setWeight, setActivity, setGoal, createError } = useCreateProfile()
+    const { setAge, setGender, setHeight, setWeight, setActivity, setGoal, setDailyIntake, createError } = useCreateProfile()
 
     const navigate = useNavigate()
 
     const { setProteinIntake } = useProteinContext()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setAge(age)
-        setGender(gender)
-        setHeight(height)
-        setWeight(weight)
-        setActivity(activity)
-        setGoal(goal)
+    const handleSubmit = async (e) => {
 
-        const proteinAmount = CalculateIntake(
+        e.preventDefault()
+
+        if (
+            age!== "" &&
+            gender!== "" &&
+            height !== "" &&
+            weight !== "" &&
+            activity !== "" &&
+            goal !== ""
+        ){
+
+        const proteinAmount = await CalculateIntake(
             parseInt(age),
             gender, 
             parseInt(height),
@@ -46,8 +50,16 @@ export default function Onboard() {
             activity,
             goal)
 
-        console.log(proteinAmount)
-        setProteinIntake(proteinAmount)
+            setProteinIntake(proteinAmount)
+            setDailyIntake(proteinAmount)
+        }
+
+        setAge(age)
+        setGender(gender)
+        setHeight(height)
+        setWeight(weight)
+        setActivity(activity)
+        setGoal(goal)
         
         navigate('/')
 
