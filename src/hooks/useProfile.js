@@ -68,6 +68,7 @@ export const useCreateProfile = () => {
     const [ weight, setWeight ] = useState('')
     const [ activity, setActivity ] = useState('')
     const [ goal, setGoal ] = useState('')
+    const [ dailyIntake, setDailyIntake ] = useState('')
 
     const { user } = useAuthContext()
 
@@ -87,6 +88,7 @@ export const useCreateProfile = () => {
                     weight: weight,
                     activity: activity,
                     goal: goal,
+                    dailyIntake: dailyIntake,
                     uid: user.uid
                 })
 
@@ -95,13 +97,13 @@ export const useCreateProfile = () => {
             }
         }
 
-        if(age !== "" && gender !== "" && height !== "" && weight !== "" && activity !== "" && goal !== ""){
+        if(age !== "" && gender !== "" && height !== "" && weight !== "" && activity !== "" && goal !== "" && dailyIntake !== ""){
             addDocument()
         }
 
-    }, [ age, gender, height, weight, activity, goal, user])
+    }, [ age, gender, height, weight, activity, goal, dailyIntake, user])
 
-    return { setAge, setGender, setHeight, setWeight, setActivity, setGoal, createError }
+    return { setAge, setGender, setHeight, setWeight, setActivity, setGoal, setDailyIntake, createError }
 }
 
 

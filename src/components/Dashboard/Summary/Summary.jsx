@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTracker } from '../../../hooks/useTracker'
+import { useProfile } from '../../../hooks/useProfile'
 
 
 // styles
@@ -8,7 +9,8 @@ import styles from './Summary.module.scss'
 // components
 import Error from '../../Error'
 
-export default function Summary({ proteinIntake }) {
+
+export default function Summary() {
 
     // use intakes data from Firebase 
         // - in order to sum up total intakes
@@ -18,7 +20,7 @@ export default function Summary({ proteinIntake }) {
     const [ remaining, setRemaining ] = useState('')
     const [ bar, setBar ] = useState('')
 
-
+    const { profile } = useProfile()
  
     // calculate total protein intakes
     useEffect(() => {
@@ -34,17 +36,19 @@ export default function Summary({ proteinIntake }) {
 
             setTotalProtein(sum)
 
-            const remainingProtein = parseInt(proteinIntake) - sum
-            setRemaining(remainingProtein)
-
-            const barPercent = 100 / parseInt(proteinIntake) * sum
-
-            setBar(barPercent)
+            if(profile) {
+                const remainingProtein = profile.dailyIntake - sum
+                setRemaining(remainingProtein)
+    
+                const barPercent = 100 / profile.dailyIntake * sum
+    
+                setBar(barPercent)
+            }
         }
 
         if(intakes){ getProteins() }
 
-    }, [intakes, proteinIntake])
+    }, [intakes, profile])
 
   return (
     <div className={styles.container}> 
@@ -55,7 +59,9 @@ export default function Summary({ proteinIntake }) {
         <div className={styles.today}>
             <div className={styles.titleContainer}>
                 <h6>Today's Protein Intake</h6>
-                <p>{totalProtein} / {proteinIntake}g</p>
+                { profile ? <p>{totalProtein} / {profile.dailyIntake}g</p> :
+                    <p>{totalProtein} / unset g</p>
+                }
             </div>
             <div className={styles.proteinCalc}>
                 <span>{remaining} g remaining</span>
