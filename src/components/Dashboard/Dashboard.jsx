@@ -1,5 +1,5 @@
 import { useAuthContext } from '../../hooks/useAuthContext'
-
+import { useProteinContext } from '../../hooks/useProteinContext'
 // styles
 import styles from './Dashboard.module.scss'
 
@@ -11,11 +11,13 @@ export default function Dashboard() {
 
   const { user } = useAuthContext()
 
+  const { proteinIntake } = useProteinContext()
+
   return (
-    <div>
+    <div className={styles.container}>
         <h2 className={styles.title}>Welcome, {user.displayName}!</h2>
         <Profile />
-        <Summary />
+        <Summary proteinIntake={proteinIntake}/>
     </div>
   )
 }

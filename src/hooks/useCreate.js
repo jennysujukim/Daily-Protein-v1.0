@@ -1,18 +1,25 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from './useAuthContext'
 import { db } from '../firebase/config'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { 
+    collection, 
+    addDoc,
+    serverTimestamp } from 'firebase/firestore'
 
 export const useCreate = () => {
 
+    const [ error, setError ] = useState(null)
     const [ name, setName ] = useState('')
     const [ protein, setProtein ] = useState('')
+
     const { user } = useAuthContext()
 
+    // add timestamp in order to display the data in line with the current date
     const createdAt = serverTimestamp()
 
     useEffect(() => {
 
+        // create add function
         const addDocument = async () => {
             try {
                 const ref = collection(db, 'intakes')
@@ -24,9 +31,9 @@ export const useCreate = () => {
                     uid: user.uid
                 })
 
-                console.log('Document added sccueessfully')
             } catch (error) {
-                console.error('Error adding document:', error)
+                setError('Error adding document:', error)
+                console.log(error)
             }
         }
 
@@ -36,6 +43,6 @@ export const useCreate = () => {
 
     }, [user, name, protein, createdAt])
 
-    return { setName, setProtein, createdAt }
+    return { setName, setProtein, createdAt, error }
 
 }

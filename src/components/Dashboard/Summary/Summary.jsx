@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useTracker } from '../../../hooks/useTracker'
 
+
 // styles
 import styles from './Summary.module.scss'
 
 // components
 import Error from '../../Error'
 
-export default function Summary() {
+export default function Summary({ proteinIntake }) {
 
     // use intakes data from Firebase 
         // - in order to sum up total intakes
@@ -16,6 +17,8 @@ export default function Summary() {
     const [ totalProtein, setTotalProtein ] = useState([])
     const [ remaining, setRemaining ] = useState('')
     const [ bar, setBar ] = useState('')
+
+
  
     // calculate total protein intakes
     useEffect(() => {
@@ -31,18 +34,17 @@ export default function Summary() {
 
             setTotalProtein(sum)
 
-            // change 40 to the calculated target intakes from onboard
-            const remainingProtein = 40 - sum
+            const remainingProtein = parseInt(proteinIntake) - sum
             setRemaining(remainingProtein)
 
-            const barPercent = 100 / 40 * sum
+            const barPercent = 100 / parseInt(proteinIntake) * sum
 
             setBar(barPercent)
         }
 
         if(intakes){ getProteins() }
 
-    }, [intakes])
+    }, [intakes, proteinIntake])
 
   return (
     <div className={styles.container}> 
@@ -53,7 +55,7 @@ export default function Summary() {
         <div className={styles.today}>
             <div className={styles.titleContainer}>
                 <h6>Today's Protein Intake</h6>
-                <p>{totalProtein} / 40g</p>
+                <p>{totalProtein} / {proteinIntake}g</p>
             </div>
             <div className={styles.proteinCalc}>
                 <span>{remaining} g remaining</span>
