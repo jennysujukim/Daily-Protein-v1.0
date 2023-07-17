@@ -1,27 +1,95 @@
-# Daily Protein
-Single Page Application that users can sign up, calculate, and track daily protein intake.
+<a name="readme-top"></a>
+
+<!-- PROJECT OVERVIEW -->
+<br />
+<div align="center">
+  <h1 align="center">Daily Protein</h1>
+
+  <p align="center">
+    SPA that users can sign up, calculate, and track daily protein intake.
+    <br />
+    <br />
+    <a href="https://daily-protein.seojeongkim.com/">View Live Demo</a>
+    ·
+    <a href="https://github.com/jennysujukim/daily-protein-2023">Explore Docs</a>
+  </p>
+</div>
+
+![Product Screenshot](src/assets/images/readme-screenshot.png)
+
 
 <!-- TABLE OF CONTENTS -->
 ## 📗 Table of Contents
-
-- [📖 About Project](#about-project)
-- [🛠 Built With](#🛠-built-with)
-
+- [About Project](#about-project)
+- [Built With](#🛠-built-with)
+- [Roadmap](#🔭-roadmap)
+- [Live Demo](#🚀-live-demo)
+- [Acknowledgments](#🙏-acknowledgments)
+- [License](#📝-license)
+- [Contact](#📨-contact)
 
 ## 📖 About Project <a name="about-project"></a>
-Daily Protein is a user-friendly Single Page Application that helps users in monitoring their daily protein intake. With Daily Protein, users can effortlessly calculate their required protein amount for each day and set targets to track their progress by logging meals on the app.
-
-To get started, users simply need to create an account and input their profile information. Then they can search foods to get detailed nutrition info and add them to their daily protein tracker. The app automatically sum up the total protein amount, providing users with up to date progress towards their goal.
+Daily Protein is a user-friendly Single Page Application that helps users in monitoring their daily protein intake. With Daily Protein, users can effortlessly calculate their required protein amount for each day and set targets to track their progress by searching and logging meals on the app.
 
 ### Key Features
+- Sign up / Sign in account
+- Save and update personal diet data 
+- Calculate daily protein intake
+- Search foods to retrieve detailed nutrition info
+- Add foods to personal dashboard and track protein intake
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🛠 Built With <a name="built-with"></a>
-### Tech Stack <a name="built-with"></a>
 
+> Frontend
+<p>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" title="React.js" width="50" height="50"/> &nbsp;
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" title="Sass" width="50" height="50"/> &nbsp;
+</p>
+
+> Serverside / Database
+<p>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" title="Node.js" width="50" height="50" /> &nbsp;
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" title="Firebase" width="50" height="50"/> &nbsp;
+</p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Roadmap <a name="roadmap"></a>
+- [X] Create client side view with React.js and Sass 
+- [X] Connect Firebase Firestore to communicate data
+- [X] Connect Firebase Auth to authenticate user
+- [] Update style with Material UI
+- [] Apply typescript
+- [] Migrate data to Mongo DB and create server with Express 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 - [Live Demo Link](https://daily-protein.seojeongkim.com/)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 🔭 Future Features <a name="future-features"></a>
+## 🙏 Acknowledgments
+
+* [Edamam Food database API](https://developer.edamam.com/food-database-api)
+* [Bodybuilding Protein Calculator](https://www.bodybuilding.com/fun/calpro.htm)
+* [Firebase Github open source code](https://github.com/firebase/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📝 License
+
+Distributed under the MIT License. See `LICENSE.md` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📨 Contact
+
+- **Jen Kim** - [@jenny_seojeong_kim](https://www.linkedin.com/in/jenny-seojeong-kim/) - hello@seojeongkim.com
+
+- **Come to see more projects** - [Portfolio](seojeongkim.com)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
