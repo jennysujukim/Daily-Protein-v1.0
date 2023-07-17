@@ -95,7 +95,7 @@ Distributed under the MIT License. See `LICENSE.md` for more information.
 
 - **Jen Kim** - [@jenny_seojeong_kim](https://www.linkedin.com/in/jenny-seojeong-kim/) - hello@seojeongkim.com
 
-- **Come to see more projects** - [Portfolio](seojeongkim.com)
+- **Come to see more projects** - [Portfolio](https://seojeongkim.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
