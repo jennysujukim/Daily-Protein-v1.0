@@ -88,7 +88,7 @@ Daily Protein is a user-friendly Single Page Application that helps users in mon
 <!-- LICENSE -->
 ## 📝 License
 
-Distributed under the MIT License. See `LICENSE.md` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
