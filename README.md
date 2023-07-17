@@ -10,7 +10,7 @@
     <br />
     <a href="https://daily-protein.seojeongkim.com/" target="_blank">View Live Demo</a>
     ·
-    <a href="https://github.com/jennysujukim/daily-protein-2023">Explore Docs</a>
+    <a href="https://github.com/jennysujukim/daily-protein">Explore Docs</a>
   </p>
 </div>
 
@@ -59,7 +59,9 @@ Daily Protein is a user-friendly Single Page Application that helps users in mon
 
 <!-- ROADMAP -->
 ## 🔭 Roadmap <a name="roadmap"></a>
-- [X] Create client side view with React.js and Sass 
+- [X] Create client side view with React.js and Sass
+- [X] Implement RESTful API to fetch food data and create search function
+- [X] Create protein calculation function
 - [X] Connect Firebase Firestore to communicate data
 - [X] Connect Firebase Auth to authenticate user
 - [ ] Update style with Material UI
