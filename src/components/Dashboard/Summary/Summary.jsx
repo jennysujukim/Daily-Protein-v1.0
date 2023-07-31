@@ -7,7 +7,7 @@ import { useProfile } from '../../../hooks/useProfile'
 import styles from './Summary.module.scss'
 
 // components
-import Error from '../../Error'
+import Error from '../../Error' 
 
 
 export default function Summary() {

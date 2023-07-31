@@ -7,7 +7,7 @@ export const ProteinContextProvider = ({ children }) => {
     const [ proteinIntake, setProteinIntake ] = useState('')
 
     useEffect(() => {
-        setProteinIntake()
+        setProteinIntake() 
     }, [ setProteinIntake ])
 
     return (
