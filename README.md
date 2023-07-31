@@ -16,6 +16,9 @@
 
 ![Product Screenshot](src/assets/images/readme-screenshot.png)
 
+<p align="center">Daily Protein v2.0 is released. <a href="https://github.com/jennysujukim/Daily-Protein-v2.0" target="_blank">Click here</a> to go to version 2 repository.</p>
+
+<br />
 
 <!-- TABLE OF CONTENTS -->
 ## 📗 Table of Contents
